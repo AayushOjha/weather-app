@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { weatherApi } from "../services/api/weatherApi";
 import { IWeatherResponse } from "../interfaces";
+import { localStorageHelper } from "../services/helpers/localStoreage";
 
 type Props = {
   setWeatherData: Dispatch<SetStateAction<IWeatherResponse | null | undefined>>;
@@ -30,6 +31,7 @@ const SearchBar = ({ setIsLoading, setWeatherData }: Props) => {
               .fetchCityWeather(term)
               .then(({ data }) => {
                 setWeatherData(data);
+                localStorageHelper.setWeather(data);
               })
               .catch((err) => {
                 setWeatherData(null);
