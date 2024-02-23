@@ -46,5 +46,6 @@
   },
   "devDependencies": {
     "gh-pages": "^6.1.1"
-  }
+  },
+  "homepage": "https://AayushOjha.github.io/weather-app"
 }
