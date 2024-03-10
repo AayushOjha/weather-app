@@ -3,13 +3,15 @@ import { weatherIconUrl } from "../services/helpers/icon";
 import { FaTemperatureLow } from "react-icons/fa6";
 import { WiHumidity } from "react-icons/wi";
 import { FaWind } from "react-icons/fa6";
+import { ITheme } from "../services/helpers/getTheme";
 
 type Props = {
   weatherData: IWeatherResponse | null | undefined;
   isLoading: boolean;
+  theme: ITheme;
 };
 
-const Result = ({ weatherData, isLoading }: Props) => {
+const Result = ({ weatherData, isLoading, theme }: Props) => {
   if (isLoading) {
     return (
       <div>
@@ -33,13 +35,9 @@ const Result = ({ weatherData, isLoading }: Props) => {
   } else {
     return (
       <div className="container container-col">
-        <img
-          src={weatherIconUrl(weatherData.weather[0].icon)}
-          alt="weather icon"
-          className="weather-icon"
-        />
-        <p className="weather-icon-text">{weatherData.weather[0].main}</p>
         <p className="center-phase city-name">{weatherData.name}</p>
+        <img src={theme.icon} alt="weather icon" className="weather-icon" />
+        <p className="weather-icon-text">{weatherData.weather[0].main}</p>
         <div className="container">
           <FaTemperatureLow color="white" size={25} />
           <div className="center-phase card-text">
